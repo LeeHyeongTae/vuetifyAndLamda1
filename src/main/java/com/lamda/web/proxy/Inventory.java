@@ -13,7 +13,7 @@ public class Inventory<T> {
     public Inventory(){inventory = new ArrayList<>();}
     public void add(T t){inventory.add(t);}
     public ArrayList<T> get(){return inventory;}
-    public T getOne(int i){
+    public T get(int i){
        Function<Integer, T> g =  inventory::get;
        return g.apply(i);
     }
