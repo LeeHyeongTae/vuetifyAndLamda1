@@ -23,7 +23,8 @@ export default {
   name: "HelloWorld",
   methods: {
       action(){
-        this.$store.dispatch('crawler/crawler')
+          alert('크롤링버튼 클릭')
+        this.$store.dispatch('proxy/crawler')
       },
       search(){
           alert(this.input)

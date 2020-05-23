@@ -8,12 +8,8 @@ const state = {
 const actions = {
     async crawler({commit}) {
         const url = state.context+`proxy/crawler`
-        const header = {
-            authorization: 'JWT fefege..',
-            Accept : 'application/json',
-            'Content-Type': 'applicaiton/json'
-        }
-        axios.get(url, header)
+
+        axios.get(url)
             .then(()=>{
                     commit('CRAWLER_COMMIT')
             })
