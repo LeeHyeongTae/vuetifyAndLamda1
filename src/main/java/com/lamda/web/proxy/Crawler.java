@@ -38,8 +38,8 @@ public class Crawler extends Proxy{
         }catch (Exception e) {
             print("에러발생");
         }
-        print("*************크롤링 결과***********");
-        inventory.get().forEach(System.out::print);
+        println("*************크롤링 결과***********");
+        inventory.get().forEach(System.out::println);
         return inventory.get();
     }
 }

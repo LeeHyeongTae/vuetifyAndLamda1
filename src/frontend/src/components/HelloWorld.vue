@@ -30,6 +30,8 @@ export default {
     },
     search(){
       alert(this.input)
+      this.$store.dispatch("proxy/search", this.input)
+      this.$router.push("/list")
       this.input = ''
       }
   }
