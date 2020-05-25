@@ -1,26 +1,16 @@
 <template>
   <div id="app">
     <div class="content">
-    <div>
-      <img src="https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png">
+      <div>
+        <router-view></router-view>
+      </div>
     </div>
-    <div>
-  <HelloWorld/>
-    </div>
-  </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
 export default {
   name: "App",
-
-  components: {
-    HelloWorld
-  },
-
   data: () => ({
     drawer: false
   })
@@ -28,10 +18,10 @@ export default {
 </script>
 
 <style scoped>
-  .content {
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    width: max-content;
-  }
+.content {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  width: max-content;
+}
 </style>
