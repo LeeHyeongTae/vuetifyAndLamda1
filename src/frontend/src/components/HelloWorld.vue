@@ -26,12 +26,10 @@ export default {
     action(){
       alert("크롤링버튼 클릭")
       this.$store.dispatch("proxy/crawler")
-      this.$router.push("/list")
     },
     search(){
       alert(this.input)
       this.$store.dispatch("proxy/search", this.input)
-      this.$router.push("/list")
       this.input = ''
       }
   }

@@ -1,13 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import List from "../components/List";
-
+import Home from "../components/Home.vue";
+import Retriever from "../components/Retriever"
 Vue.use(VueRouter);
 
 const routes = [
   { path: "/", name: "Home", component: Home },
-  { path: "/list", name: "List", component: List }
+  { path: "/retriever", name: "Retriever", component: Retriever }
 ];
 
 const router = new VueRouter({

@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import proxy from "./proxy";
+import crawling from "./crawling";
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   modules: {
-    proxy
+    crawling
   }
 });
