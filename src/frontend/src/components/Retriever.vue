@@ -6,17 +6,17 @@
                 <thead>
                 <tr>
                     <th class="text-left">No.</th>
+                    <th class="text-left">이미지</th>
                     <th class="text-left">가 수</th>
                     <th class="text-left">노래제목</th>
-                    <th class="text-left">이미지</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="item of bugsmusic" :key="item.seq">
                     <td>{{ item.seq }}</td>
+                    <td><img :src="item.thumbnail"></td>
                     <td>{{ item.artist }}</td>
                     <td>{{ item.title }}</td>
-                    <td>{{ item.thumbnail }}</td>
                 </tr>
                 </tbody>
             </template>
