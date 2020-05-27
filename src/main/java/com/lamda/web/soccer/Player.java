@@ -1,12 +1,15 @@
 package com.lamda.web.soccer;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "Player")
+@Entity(name = "player")
 public class Player {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long playerNo;
@@ -22,7 +25,8 @@ public class Player {
     @Column(length = 10, nullable = false) private String solar;
     @Column(length = 10, nullable = false) private String height;
     @Column(length = 10, nullable = false) private String weight;
-    @Column(length = 10, nullable = false) private String teamId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="team_id") private Team team;
 
     @Builder
     public Player(String playerId, String playerName, String ePlayerName, String nickname,
@@ -40,6 +44,5 @@ public class Player {
         this.solar=solar;
         this.height=height;
         this.weight=weight;
-        this.teamId=teamId;
     }
 }

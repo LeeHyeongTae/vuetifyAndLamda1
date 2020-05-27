@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name="Music")
+@Entity(name="music")
 public class Music {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long musicNo;
