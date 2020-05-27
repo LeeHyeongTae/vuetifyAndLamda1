@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -26,7 +27,7 @@ public class Player {
     @Column(length = 10, nullable = false) private String height;
     @Column(length = 10, nullable = false) private String weight;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="team_id") private Team team;
+    @NotNull @JoinColumn(name="team_id") private Team team;
 
     @Builder
     public Player(String playerId, String playerName, String ePlayerName, String nickname,

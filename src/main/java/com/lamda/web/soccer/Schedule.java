@@ -3,6 +3,7 @@ package com.lamda.web.soccer;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,7 +19,7 @@ public class Schedule {
     @Column(length = 10, nullable = false) private String homeScore;
     @Column(length = 10, nullable = false) private String awayScore;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stadium_id") private Stadium stadium;
+    @NotNull @JoinColumn(name = "stadium_id") private Stadium stadium;
 
     @Builder
     public Schedule(String scheDate, String stadiumId, String gubun, String hometeamId, String awayteamId,

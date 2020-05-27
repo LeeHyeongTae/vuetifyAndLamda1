@@ -2,6 +2,7 @@ package com.lamda.web.soccer;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,7 +24,7 @@ public class Team {
     @Column(length = 10, nullable = false) private String owner;
     @OneToMany(mappedBy = "team") private List<Player> playerList;
     @ManyToOne(fetch = FetchType.LAZY)
-    @NonNull @JoinColumn(name = "stadium_id") private Stadium stadium;
+    @NotNull @JoinColumn(name = "stadium_id") private Stadium stadium;
 
     @Builder
     public Team(String teamId, String regionName, String teamName, String eTeamName,

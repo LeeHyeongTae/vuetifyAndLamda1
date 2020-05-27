@@ -26,6 +26,11 @@ public class ProxyController{
         box.put("count", list.size());
         return box.get();
     }
+    @PostMapping("/soccer")
+    public String soccer(@RequestBody String searchWord){
+        pxy.println("넘어온 키워드 :"+searchWord);
+        return searchWord;
+    }
 
     @GetMapping("/crawler")
     public ArrayList<HashMap<String, String>> crawler(){

@@ -11,7 +11,7 @@ import java.util.List;
 public class Stadium {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long scheduleNo;
+    private Long stadiumNo;
     @Column(length = 10, nullable = false) private String stadiumId;
     @Column(length = 40, nullable = false) private String stadiumName;
     @Column(length = 10, nullable = false) private String hometeamId;

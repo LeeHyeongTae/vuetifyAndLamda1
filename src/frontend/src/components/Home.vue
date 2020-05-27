@@ -42,8 +42,13 @@
         },
         methods: {
             search() {
-                alert('검색 클릭')
-                this.$store.dispatch("crawling/search", this.searchWord);
+                alert('검색 :'+this.searchWord)
+                switch (this.searchWord) {
+                    case '축구':this.$store.dispatch("soccer/search", this.searchWord); break;
+                    case '벅스':this.$store.dispatch("crawling/search", {searchWord:this.searchWord}); break;
+                    default: alert('축구 or 벅스 입력')
+                }
+
             }
         }
     };
