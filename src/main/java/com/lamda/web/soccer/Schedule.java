@@ -22,7 +22,7 @@ public class Schedule {
     @NotNull @JoinColumn(name = "stadium_id") private Stadium stadium;
 
     @Builder
-    public Schedule(String scheDate, String stadiumId, String gubun, String hometeamId, String awayteamId,
+    public Schedule(String scheDate, String gubun, String hometeamId, String awayteamId,
                     String homeScore, String awayScore){
         this.scheDate=scheDate;
         this.gubun=gubun;

@@ -1,6 +1,7 @@
 package com.lamda.web.soccer;
 
 import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Team {
     @Builder
     public Team(String teamId, String regionName, String teamName, String eTeamName,
                 String origYyyy, String zipCode1, String zipCode2, String address,
-                String ddd, String fax, String homepage, String owner, String stadiumId){
+                String ddd, String fax, String homepage, String owner){
         this.teamId = teamId;
         this.regionName = regionName;
         this.teamName = teamName;

@@ -7,12 +7,7 @@ const state = {
 const actions = {
     async search({commit}, searchWord){
         alert("검색어: "+searchWord)
-        const word = {word:searchWord}
-        axios.post(state.context+`proxy/soccer/`, word, {
-            authorization: "JWT fefege..",
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        })
+        axios.get(state.context+`proxy/soccer/`+searchWord)
             .then(({data})=>{
                 commit("SEARCH", data)
             })
