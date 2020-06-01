@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Data @Entity(name="music") @Component @Lazy
+@Data @Entity @Component @Lazy
 public class Music {
     public Long getMusicNo() {
         return musicNo;

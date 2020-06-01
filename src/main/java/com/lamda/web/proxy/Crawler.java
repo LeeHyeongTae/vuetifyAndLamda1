@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service("crawler") @Lazy
 public class Crawler extends Proxy{
     @Autowired Inventory<Music> inventory;
@@ -55,11 +57,12 @@ public class Crawler extends Proxy{
             Document d = homepage.parse();
             Elements title = d.select("div.tit3");
             Movie movie = null;
+            String date = string(new Date());
             for(int i=0; i<title.size(); i++){
                 movie = new Movie();
                 movie.setSeq(string(i+1));
                 movie.setTitle(title.get(i).text());
-                System.out.println(movie);
+                movie.setDate(date);
                 movieRepository.save(movie);
             }
         }catch (Exception e){

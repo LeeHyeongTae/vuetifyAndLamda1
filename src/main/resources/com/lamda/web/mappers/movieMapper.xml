@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lamda.web.mappers.MovieMapper">
+    <insert id="insertMovie"
+            parameterType=" com.lamda.web.movie.MovieDTO">
+        insert seq, date, title into movie
+        value
+    </insert>
+
+    <update id="updateMovie"
+            parameterType="com.lamda.web.movie.MovieDTO">
+
+    </update>
+
+    <delete id="deleteMovie"
+            parameterType="com.lamda.web.movie.MovieDTO">
+        delete
+    </delete>
+    <select id="selectMovies" resultType="com.lamda.web.movie.MovieDTO">
+      select seq, date, title
+      from movie
+    </select>
+    <select id="countMovies" resultType="com.lamda.web.movie.MovieDTO">
+      select count(*)
+      from movie
+    </select>
+</mapper>
