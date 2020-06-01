@@ -19,11 +19,7 @@ const actions = {
             })
     },
     async bugsmusic({ commit }, searchWord) {
-        axios.post(state.context + `proxy/bugsmusic`, searchWord, {
-                authorization: "JWT fefege..",
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            })
+        axios.get(state.context + `proxy/bugsmusic/${searchWord}`)
             .then(({ data }) => {
                 commit("BUGSMUSIC", data);
                 router.push("/retriever");
@@ -33,7 +29,7 @@ const actions = {
             });
     },
     async movie({commit}, searchWord){
-        axios.get(state.context+`proxy/movie/${searchWord}`)
+        axios.get(state.context+`movie/list/1/${searchWord}`)
             .then(({data})=>{
                 commit("MOVIE", data)
                 router.push("/retriever")
@@ -64,12 +60,12 @@ const mutations = {
     MOVIE(state, data) {
         state.container = [];
         state.searchContent = 'movie'
-        state.count = data.count;
-        data.list.forEach(item => {
+        data.forEach(item => {
             state.container.push({
-                seq: item.seq,
+                movieSeq: item.movieSeq,
+                rank: item.rank,
                 title: item.title,
-                date: item.date
+                rankDate: item.rankDate
             });
         });
     }

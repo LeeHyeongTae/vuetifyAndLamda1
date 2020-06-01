@@ -1,6 +1,5 @@
 package com.lamda.web.proxy;
 
-import com.lamda.web.music.Music;
 import com.lamda.web.music.MusicRepository;
 import com.lamda.web.soccer.Player;
 import com.lamda.web.soccer.PlayerRepository;
@@ -11,14 +10,14 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 @Service("uploader") @Lazy
 public class FileUploader extends Proxy{
     @Autowired Inventory<String> inventory;
-    @Autowired PlayerRepository playerRepository;
-    @Autowired MusicRepository musicRepository;
+    @Autowired
+    PlayerRepository playerRepository;
+    @Autowired
+    MusicRepository musicRepository;
     public void upload(){
         inventory.clear();
         try{

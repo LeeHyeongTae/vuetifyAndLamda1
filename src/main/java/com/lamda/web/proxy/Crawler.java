@@ -44,8 +44,6 @@ public class Crawler extends Proxy{
         }catch (Exception e) {
             print("에러발생");
         }
-        println("*************크롤링 결과***********");
-//        inventory.get().forEach(System.out::println);
     }
     public void naverMovie(){
         inventory.clear();
@@ -60,9 +58,9 @@ public class Crawler extends Proxy{
             String date = string(new Date());
             for(int i=0; i<title.size(); i++){
                 movie = new Movie();
-                movie.setSeq(string(i+1));
+                movie.setRank(string(i+1));
                 movie.setTitle(title.get(i).text());
-                movie.setDate(date);
+                movie.setRankDate(date);
                 movieRepository.save(movie);
             }
         }catch (Exception e){

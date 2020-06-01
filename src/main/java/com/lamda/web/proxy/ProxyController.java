@@ -22,22 +22,17 @@ public class ProxyController{
     @Autowired MusicRepository musicRepository;
     @Autowired MovieRepository movieRepository;
 
-    @PostMapping("/bugsmusic")
-    public HashMap<String, Object> bugsmusic(@RequestBody String searchWord){
+    @GetMapping("/bugsmusic/{searchWord}")
+    public HashMap<String, Object> bugsmusic(@PathVariable String searchWord){
         pxy.println("넘어온 키워드: "+searchWord);
         box.clear();
-        if(musicRepository.count() ==0 ) crawler.bugsMusic();
+        if(musicRepository.count() ==0) crawler.bugsMusic();
         List<Music> list = musicRepository.findAll();
         box.put("list", list);
         box.put("count", list.size());
         return box.get();
     }
-    @GetMapping("/soccer/{searchWord}")
-    public String soccer(@PathVariable String searchWord){
-        pxy.println("넘어온 키워드 :"+searchWord);
-        uploader.upload();
-        return searchWord;
-    }
+
     @GetMapping("/movie/{searchWord}")
     public HashMap<String, Object> movie(@PathVariable String searchWord){
         pxy.println("넘어온 키워드 :"+searchWord);
@@ -48,9 +43,4 @@ public class ProxyController{
         box.put("count", list.size());
         return box.get();
     }
-
-//    @GetMapping("/crawler")
-//    public ArrayList<HashMap<String, String>> crawler(){
-//        return crawler.bugsMusic();
-//    }
 }

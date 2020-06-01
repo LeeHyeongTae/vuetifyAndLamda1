@@ -26,15 +26,17 @@
                 <thead>
                 <tr>
                     <th class="text-left">No.</th>
+                    <th class="text-left">순위</th>
                     <th class="text-left">영화제목</th>
                     <th class="text-left">날짜</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="item of container" :key="item.seq">
-                    <td>{{ item.seq }}</td>
+                <tr v-for="item of container" :key="item.movieSeq">
+                    <td>{{ item.movieSeq }}</td>
+                    <td>{{ item.rank }}</td>
                     <td>{{ item.title }}</td>
-                    <td>{{ item.date }}</td>
+                    <td>{{ item.rankDate }}</td>
                 </tr>
                 </tbody>
             </template>
