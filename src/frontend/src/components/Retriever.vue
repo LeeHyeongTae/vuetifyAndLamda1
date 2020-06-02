@@ -91,11 +91,10 @@
         },
         methods: {
             prevBlock(){
-                //(this.number!=0)? this.number = this.number-1:this.existPrev = false;
+                this.pageNumber= this.pageNumber - 1
             },
             nextBlock(){
-                //this.existPrev = true
-                //this.number = this.number+1;
+                this.pageNumber= this.pageNumber + 1
             }
         }
     };
