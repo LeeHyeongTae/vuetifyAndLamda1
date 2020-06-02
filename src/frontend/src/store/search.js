@@ -1,22 +1,25 @@
-import axios from "axios";
 import router from "@/router";
 
 const state = {
-    context: "http://localhost:5000/",
+    context: "http://localhost:5000",
     container: [],
     pager: {},
     searchContent: "",
+    searchWord: "null",
+    pageNumber: '0',
     count: 0
 };
 const actions = {
     async find({commit}, searchWord){
-        commit("TEST")
-            switch (searchWord) {
-                case'영화': router.push("/retriever"); break
-                case'축구': router.push("/movie"); break
-                case'뮤직': routr.push("/movie"); break
-            }
-            },
+        commit("SEARCHWORD", searchWord)
+        switch (searchWord) {
+            case '영화' :
+                router.push("/retriever")
+                this.state.searchContent = 'movie';
+                break;
+            default : alert('영화만 입력'); break;
+        }
+    }
 };
 const mutations = {
     MOVIE(state, data) {
@@ -31,12 +34,13 @@ const mutations = {
                 rankDate: item.rankDate
             });
         });
+    },
+    SEARCHWORD(state, data){
+        alert(`뮤테이션::${data}`)
+        state.searchWord = data
     }
 };
-const getters = {
-    container: state => state.container,
-    count: state => state.count,
-};
+const getters = {};
 
 export default {
     name: "search",
