@@ -42,7 +42,12 @@
             </template>
         </v-simple-table>
         <div class="text-center">
-            <v-pagination v-model="page" :length="5" :total-visible="5"></v-pagination>
+            <div style="margin: 0 auto; width: 500px; height: 100px">
+            <span v-if="existPrev" @click="prevBlock" stlye="width: 50px; height: 50px; border: 1px solid black; margin-right: 5px">이전</span>
+            <span v-for="i of blockSize" :key="i" stlye="width: 50px; height: 50px; border: 1px solid black; margin-right: 5px">{{ i+(blockSize*number) }}</span>
+            <span v-if="existNext" @click="nextBlock" stlye="width: 50px; height: 50px; border: 1px solid black; margin-right: 5px">다음</span>
+<!--    <v-pagination v-model="pageNumber" :length="5" :total-visible="5"></v-pagination>-->
+            </div>
         </div>
     </div>
 
@@ -52,10 +57,18 @@
 <script>
     import { mapState } from "vuex";
     export default {
-        data () {
-            return {
-                page: 1
+        data() {
+            return{
+            blockSize: 5,
+            number:0,
+            pageNumber: 1,
+            existPrev: false,
+            existNext: true,
+                arr: [6,7,8,9,10]
             }
+        },
+        created() {
+            alert('리트리브에서 크리에이티드 실행')
         },
         computed: {
             ...mapState({
@@ -63,6 +76,15 @@
                 container: state => state.crawling.container,
                 searchContent: state => state.crawling.searchContent
             })
+        },
+        methods: {
+            prevBlock(){
+                (this.number!=0)? this.number = this.number-1:this.existPrev = false;
+            },
+            nextBlock(){
+                this.existPrev = true
+                this.number = this.number+1;
+            }
         }
     };
 </script>

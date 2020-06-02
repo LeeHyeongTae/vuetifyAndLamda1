@@ -11,8 +11,8 @@ public class Pager {
     private int rowCount, startRow, endRow,
                 pageCount, pageSize, pageStart, pageEnd, nowPage,
                 blockCount, blockSize, prevBlock, nextBlock, nowBlock;
-    private boolean prev, next;
-    private String search;
+    private boolean existPrev, existNext;
+    private String searchWord;
 
     public void paging(){
         rowCount = movieMapper.countMovies();

@@ -29,7 +29,7 @@
       from movie
       where movie_seq = #{movieSeq}
     </select>
-    <select id="count" resultType="int">
+    <select id="countMovies" resultType="int">
       select count(*)
       from movie
     </select>

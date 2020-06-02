@@ -40,6 +40,9 @@
                 searchWord: ""
             };
         },
+        created() {
+            //
+        },
         methods: {
             search() {
                 switch (this.searchWord) {
@@ -48,7 +51,6 @@
                     case '영화':this.$store.dispatch("crawling/movie", this.searchWord); break;
                     default: alert('축구 or 벅스 or 영화 입력')
                 }
-
             }
         }
     };

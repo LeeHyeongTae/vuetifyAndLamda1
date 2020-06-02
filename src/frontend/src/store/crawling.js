@@ -29,7 +29,7 @@ const actions = {
             });
     },
     async movie({commit}, searchWord){
-        axios.get(state.context+`movie/list/1/${searchWord}`)
+        axios.get(state.context+`movie/list/0/${searchWord}`)
             .then(({data})=>{
                 commit("MOVIE", data)
                 router.push("/retriever")
@@ -60,7 +60,8 @@ const mutations = {
     MOVIE(state, data) {
         state.container = [];
         state.searchContent = 'movie'
-        data.forEach(item => {
+        state.count = data.count
+        data.list.forEach(item => {
             state.container.push({
                 movieSeq: item.movieSeq,
                 rank: item.rank,
