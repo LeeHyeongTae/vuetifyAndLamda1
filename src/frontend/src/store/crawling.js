@@ -6,6 +6,7 @@ const state = {
     container: [],
     soccer : "",
     searchContent: "",
+    searchWord: "",
     count: 0
 };
 const actions = {
@@ -60,6 +61,7 @@ const mutations = {
     MOVIE(state, data) {
         state.container = [];
         state.searchContent = 'movie'
+        state.searchWord = data.searchWord
         state.count = data.count
         data.list.forEach(item => {
             state.container.push({
@@ -72,6 +74,7 @@ const mutations = {
     }
 };
 const getters = {
+    searchWord: state => state.searchWord,
     soccer: state => state.soccer,
     container: state => state.container,
     count: state => state.count,

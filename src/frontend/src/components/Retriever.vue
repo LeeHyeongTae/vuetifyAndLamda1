@@ -1,6 +1,7 @@
 <template>
     <div>
         <h3>검색결과 : {{count}}</h3>
+        <h3>검색어 : {{searchWord}}</h3>
         <v-simple-table v-if="searchContent==='music'">
             <template v-slot:default>
                 <thead>
@@ -50,8 +51,6 @@
             </div>
         </div>
     </div>
-
-
 </template>
 
 <script>
@@ -59,6 +58,7 @@
     export default {
         data() {
             return{
+            searchWord: "",
             blockSize: 5,
             number:0,
             pageNumber: 1,
@@ -68,10 +68,11 @@
             }
         },
         created() {
-            alert('리트리브에서 크리에이티드 실행')
+            return this.$store.dispatch("crawling/movie"+this.searchWord)
         },
         computed: {
             ...mapState({
+                searchWord: state => state.crawling.searchWord,
                 count: state => state.crawling.count,
                 container: state => state.crawling.container,
                 searchContent: state => state.crawling.searchContent
