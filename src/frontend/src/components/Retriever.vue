@@ -1,6 +1,7 @@
 <template>
     <div>
         <h3>총게시글수 : {{pager.rowCount}}</h3>
+        <a @click="myalert('aaaa')">테스트</a>
         <v-simple-table v-if="searchContent==='music'">
             <template v-slot:default>
                 <thead>
@@ -44,7 +45,7 @@
         <div class="text-center">
             <div style="margin: 0 auto; width: 500px; height: 100px;">
             <span v-if="pager.existPrev" @click="prevBlock" style="width: 50px; height: 50px; border: 1px solid black; margin-right: 5px; cursor: pointer;">이전</span>
-            <span @click="testClick(i)" v-for="i of pages" :key="i" style="width: 50px; height: 50px; border: 1px solid black; margin-right: 5px; cursor: pointer;">{{ i }}</span>
+            <span @click="transferPage(i)" v-for="i of pages" :key="i" style="width: 50px; height: 50px; border: 1px solid black; margin-right: 5px; cursor: pointer;">{{ i }}</span>
             <span v-if="pager.existNext" @click="nextBlock" style="width: 50px; height: 50px; border: 1px solid black; margin-right: 5px; cursor: pointer;">다음</span>
 <!--    <v-pagination v-model="pageNumber" :length="5" :total-visible="5"></v-pagination>-->
             </div>
@@ -52,42 +53,26 @@
     </div>
 </template>
 <script>
-    import axios from "axios"
-    import { mapState } from "vuex";
+    import {mapState} from "vuex"
+    import {proxy} from "./mixins/proxy";
     export default {
-        data() {
-            return{
-                searchContent: 'movie',
-                pageNumber: 0,
-                pages: [],
-                list: [],
-                pager: {},
-                totalCount: '',
-            }
-        },
+        mixins: [proxy],
         created() {
-            axios
-                .get(`${this.$store.state.search.context}/movies/${this.$store.state.search.searchWord}/${this.$store.state.search.pageNumber}`)
-                .then(res => {
-                    res.data.list.forEach(elem => {this.list.push(elem)})
-                    this.pager = res.data.pager
-                    let i = this.pager.pageStart + 1
-                    const arr = []
-                    console.log(`페이지 끝: ${this.pager.pageEnd}`)
-                    for(; i<= this.pager.pageEnd + 1; i++){
-                        arr.push(i)
-                    }
-                    this.pages = arr
-                })
-                .catch(err => {
-                    alert(`영화 통신 실패 ${err}`)
-                })
+            console.log('페이징 가기전')
+            let json = proxy.methods.paging(`${this.$store.state.search.context}/movies/null/0`)
+            this.$store.state.search.list = json.movies
+            this.$store.state.search.pages = json.pages
+            this.$store.state.search.pager = json.temp
+            this.$store.state.search.searchContent = 'movie'
+            console.log('크리에이티드 : '+json.temp.pageSize)
         },
         computed: {
             ...mapState({
-                count: state => state.crawling.count,
-                container: state => state.crawling.container,
-            })
+                list: state => state.search.list,
+                pages: state => state.search.pages,
+                pager: state => state.search.pager,
+                searchContent: state => state.search.searchContent
+            }),
         },
         methods: {
             prevBlock(){
@@ -96,8 +81,8 @@
             nextBlock(){
                 //
             },
-            testClick(d){
-                this.pageNumber = d;
+            transferPage(d){
+                this.$store.dispatch("search/transferPage",{cate:'movies',searchWord:'null',pageNumber:d-1})
             }
         }
     };

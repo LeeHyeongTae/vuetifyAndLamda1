@@ -31,7 +31,7 @@ const actions = {
     },
     async movie({commit}, searchWord){
         axios.get(state.context+`movie/list/0/${searchWord}`)
-            .then(({data})=>{
+            .then(({data})=>{ //data는 axios의 data임. 디스트럭처링
                 commit("MOVIE", data)
                 router.push("/retriever")
             })
