@@ -79,7 +79,7 @@
                 //
             },
             nextBlock(){
-                //
+                this.$store.dispatch("search/transferPage",{cate:'movies',searchWord:'null',pageNumber:5})
             },
             transferPage(d){
                 this.$store.dispatch("search/transferPage",{cate:'movies',searchWord:'null',pageNumber:d-1})
