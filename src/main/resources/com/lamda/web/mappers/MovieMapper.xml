@@ -19,15 +19,19 @@
         delete from movie where movie_seq like #{movieSeq}
     </delete>
     <select id="selectMovies" resultType="com.lamda.web.movie.MovieDTO"
-            parameterType="com.lamda.web.proxy.Pager">
-       select movie_seq movieSeq, rank, title, rank_date rankDate
-      from movie
-      limit #{startRow}, #{pageSize}
-    </select>
-    <select id="selectMovie" resultType="com.lamda.web.movie.MovieDTO">
+                             parameterType="com.lamda.web.proxy.Pager">
       select movie_seq movieSeq, rank, title, rank_date rankDate
       from movie
-      where movie_seq = #{movieSeq}
+      <if test="searchWord != null">
+          where title like '%${searchWord}%'
+      </if>
+      limit #{startRow}, #{pageSize}
+    </select>
+    <select id="selectMovie" resultType="com.lamda.web.movie.MovieDTO"
+                            parameterType="String">
+      select movie_seq movieSeq, rank, title, rank_date rankDate
+      from movie
+      where movie_seq like '${seq}'
     </select>
     <select id="countMovies" resultType="int">
       select count(*)

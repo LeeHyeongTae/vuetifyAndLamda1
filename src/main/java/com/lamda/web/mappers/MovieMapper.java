@@ -12,6 +12,6 @@ public interface MovieMapper {
 //    public void updateMovie(MovieDTO movie);
 //    public void deleteMovie(String rank);
     public List<MovieDTO> selectMovies(Pager pager);
-//    public MovieDTO selectMovie(String seq);
     public int countMovies();
+    MovieDTO selectMovie(String p);
 }

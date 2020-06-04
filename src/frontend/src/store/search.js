@@ -8,6 +8,7 @@ const state = {
     pages: [],
     list: [],
     pager: {},
+    item: {},
     searchContent: ''
 };
 const actions = {
@@ -26,6 +27,17 @@ const actions = {
             .catch(()=>{
                 alert('page 바꾸는 통신 에러')
             })
+    },
+    async selectOne({commit},payload){
+        axios
+            .get(`${state.context}/${payload.cate}/${payload.seq}`)
+            .then(({data})=>{
+                commit("DETAIL_ONE", data)
+                router.push('/movieDetail')
+            })
+            .catch(()=>{
+                alert('page 바꾸는 통신 에러')
+            })
     }
 };
 const mutations = {
@@ -38,6 +50,10 @@ const mutations = {
         state.searchContent = 'movie'
         state.pager = data.pager
         state.list = data.list
+    },
+    DETAIL_ONE(state, data){
+        state.searchContent = 'detail'
+        state.item = data
     }
 };
 const getters = {};
