@@ -42,7 +42,6 @@ const actions = {
 };
 const mutations = {
     SEARCHWORD(state, data){
-        alert(`뮤테이션::${data}`)
         state.searchContent = 'movie'
         state.searchWord = data
     },

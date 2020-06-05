@@ -75,7 +75,9 @@
         },
         methods: {
             transferPage(d){
-                this.$store.dispatch("search/transferPage",{cate:'movies',searchWord:document.getElementById('searchWord').value,pageNumber:d})
+                let searchWord = document.getElementById('searchWord').value
+                if(searchWord === ''){searchWord= 'null'}
+                this.$store.dispatch("search/transferPage",{cate:'movies',searchWord:searchWord,pageNumber:d})
             },
             search(){
                 let searchWord = document.getElementById('searchWord').value
@@ -83,7 +85,6 @@
                 this.$store.dispatch("search/transferPage",{cate:'movies',searchWord:searchWord,pageNumber:0})
             },
             selectOne(movieSeq){
-                proxy.methods.tester(movieSeq)
                 this.$store.dispatch("search/selectOne",{cate:'movies',seq:movieSeq})
             }
         }

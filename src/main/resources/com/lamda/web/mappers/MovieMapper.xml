@@ -37,4 +37,21 @@
       select count(*)
       from movie
     </select>
+    <select id="switchMovie"
+            resultType="com.lamda.web.movie.MovieDTO"
+            parameterType="com.lamda.web.movie.MovieDTO">
+        select movie_seq movieSeq, rank, title, rank_date rankDate
+        from movie WHERE title like '%${searchWord}%'
+        <choose>
+            <when test="title != null">
+                AND title like #{title}
+            </when>
+            <when test="ost != null and ost.seq != null">
+                AND sot like #{ost.seq}
+            </when>
+            <otherwise>
+                AND rank_date like '$%{rankDate}%'
+            </otherwise>
+        </choose>
+    </select>
 </mapper>
