@@ -6,14 +6,20 @@
             parameterType="com.lamda.web.movie.MovieDTO">
         insert rank, title, rank_date into movie
         values (#{rank},#{title},#{rankDate})
+        <selectKey resultType="int" keyProperty="iq" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
-
     <update id="updateMovie"
             parameterType="com.lamda.web.movie.MovieDTO">
-        update set title = #{title} from movie
+        update movie
+        <set>
+            <if test="rank != null">rank = #{rank},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="rank_date != null">rank_date = #{rankDate},</if>
+        </set>
         where movie_seq like #{movieSeq}
     </update>
-
     <delete id="deleteMovie"
             parameterType="com.lamda.web.movie.MovieDTO">
         delete from movie where movie_seq like #{movieSeq}
@@ -53,5 +59,14 @@
                 AND rank_date like '$%{rankDate}%'
             </otherwise>
         </choose>
+    </select>
+    <select id="selectPostIn" resultType="com.lamda.web.movie.MovieDTO">
+        SELECT *
+        FROM music m
+        WHERE seq in
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{movie}
+        </foreach>
     </select>
 </mapper>
